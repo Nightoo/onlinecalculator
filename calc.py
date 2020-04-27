@@ -16,7 +16,7 @@ def calc():
                       </head>
                       <body>
                         <h1>Калькулятор!!!</h1>
-                        <form name="test" method="post" action="/calculator">
+                        <form name="test" method="post" action="/">
                          <p>
                           <input type="number" size="15" name="number1" placeholder='Введите число' id="number1">
                          </p>
