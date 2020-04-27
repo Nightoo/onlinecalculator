@@ -5,7 +5,7 @@ from flask import request
 app = Flask(__name__)
 
 
-@app.route('/calculator', methods=['POST', 'GET'])
+@app.route('/', methods=['POST', 'GET'])
 def calc():
     if request.method == 'GET':
         return """<!doctype html>
@@ -76,5 +76,4 @@ def calc():
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(port=8080, host='127.0.0.1')
