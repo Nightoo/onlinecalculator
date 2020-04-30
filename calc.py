@@ -17,11 +17,14 @@ def calc():
                       <body>
                         <h1>Калькулятор!!!</h1>
                         <form name="test" method="post" action="/">
-                         <p>
-                          <input type="number" size="15" name="number1" placeholder='Введите число' id="number1">
+                        <p>
+                          <input type="str" size="15" name="name" placeholder='Введите имя' id="name">
                          </p>
                          <p>
-                          <input type="number" size="15" name="number2" placeholder='Введите число' id="number2">
+                          <input type="number" size="15" required name="number1" placeholder='Введите число' id="number1">
+                         </p>
+                         <p>
+                          <input type="number" size="15" required name="number2" placeholder='Введите число' id="number2">
                          </p>
                          <p>
                           <div class="form-check">
@@ -75,30 +78,36 @@ def calc():
     elif request.method == 'POST':
         print(request.form['number1'])
         print(request.form['number2'])
+        name = request.form['name']
+        if name != '':
+            name += ','
         number1 = int(request.form['number1'])
         number2 = int(request.form['number2'])
+        if str(number1) == '' or str(number1) == '':
+            return f'{name}, введите числа'
         print(request.form['operation'])
         if request.form['operation'] == 'plus':
-            return str(number1 + number2)
+            return f'{name} Ваш ответ: {str(number1 + number2)}'
         elif request.form['operation'] == 'minus':
-            return str(number1 - number2)
+            return f'{name} Ваш ответ: {str(number1 - number2)}'
         elif request.form['operation'] == 'multiplication':
-            return str(number1 * number2)
+            return f'{name} Ваш ответ: {str(number1 * number2)}'
         elif request.form['operation'] == 'division':
             if number2 == 0:
                 return 'Так нельзя'
             else:
-                return str(number1 / number2)
+                return f'{name} Ваш ответ: {str(number1 / number2)}'
         elif request.form['operation'] == 'root':
             if number2 == 0:
                 return 'Так нельзя'
             else:
-                return str(number1 ** (1 / number2))
+                return f'{name} Ваш ответ: {str(number1 ** (1 / number2))}'
         elif request.form['operation'] == 'degree':
             if number2 >= 10 or number1 > 99:
                 return 'Очень большое число'
             else:
-                return str(number1 ** number2)
+                return f'{name} Ваш ответ: {str(number1 ** number2)}'
+
 
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
