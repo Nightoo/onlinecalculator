@@ -48,9 +48,25 @@ def calc():
                               /
                              </label>
                           </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="operation" id="degree" value="degree">
+                             <label class="form-check-label" for="^">
+                              ^
+                             </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="operation" id="root" value="root">
+                             <label class="form-check-label" for="root">
+                              n-th root 
+                             </label>
+                          </div>
                           </p>
                          <p>
                           <input type='submit' value='Получить результат'>
+                         </p>
+                         <p>
+                          <a href="https://github.com/Nightoo/Conceptual-Tetris-Game"><img src="conctetris.png" alt="Концептуальный тетрис"></a>
+                          <a href="https://github.com/Nightoo/Galaga"><img src="startscreen.png" alt="Концептуальная галага"></a>
                          </p>
                         </form>
                       </body>
@@ -70,9 +86,19 @@ def calc():
             return str(number1 * number2)
         elif request.form['operation'] == 'division':
             if number2 == 0:
-                return 'Сладкий, так нельзя'
+                return 'Так нельзя'
             else:
                 return str(number1 / number2)
+        elif request.form['operation'] == 'root':
+            if number2 == 0:
+                return 'Так нельзя'
+            else:
+                return str(number1 ** (1 / number2))
+        elif request.form['operation'] == 'degree':
+            if number2 >= 10 or number1 > 99:
+                return 'Очень большое число'
+            else:
+                return str(number1 ** number2)
 
-#if __name__ == '__main__':
-#    app.run(port=8080, host='127.0.0.1')
+if __name__ == '__main__':
+    app.run(port=8080, host='127.0.0.1')
